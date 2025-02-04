@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@course-project/backend",
   "private": "true",
   "version": "0.0.0",
   "description": "",
@@ -8,16 +8,19 @@
     "dev": "nodemon ./src/index.ts",
     "build": "tsc --build ./tsconfig.json",
     "format": "prettier . --write",
-    "start": "node ./dist/index.js"
+    "start": "node ./dist/index.js",
+    "types": "tsc --noEmit --project ./tsconfig.json" 
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@trpc/server": "^10.45.2",
     "cors": "^2.8.5",
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.4.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.10",
