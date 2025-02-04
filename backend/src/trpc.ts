@@ -1,7 +1,7 @@
 import { initTRPC } from "@trpc/server";
 import { generateTemplates } from "./data/mock";
 
-const templates = generateTemplates(20);
+const templates = generateTemplates(9);
 
 const trpc = initTRPC.create();
 
