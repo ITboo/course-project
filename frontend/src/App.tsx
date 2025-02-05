@@ -5,9 +5,18 @@ import MainLayout from './app/layouts/mainLayout';
 import NotFoundPage from './pages/NotFound';
 import TemplatePage from './pages/TemplatePage';
 import MainPage from './pages/MainPage';
+
+import { useContext, useEffect } from 'react';
+import { ThemeContext } from './app/context/ThemeContext';
 import './App.css';
 
 function App() {
+  const { theme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    document.body.className = theme === 'light' ? 'light-theme' : 'dark-theme';
+  }, [theme]);
+
   return (
     <TrpcProvider>
       <BrowserRouter>

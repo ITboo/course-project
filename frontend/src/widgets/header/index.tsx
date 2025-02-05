@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Search, FormInput as Forms, User } from 'lucide-react';
+import { Search, FormInput as Forms, User, Sun, Moon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ThemeContext } from '@/app/context/ThemeContext';
+import { useContext } from 'react';
 
 const Header = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <header className="container m-auto flex p-4 items-center justify-between">
       <Link to="/" className="flex items-center space-x-2">
@@ -23,9 +27,20 @@ const Header = () => {
           </button>
         </div>
       </form>
-      <div className="flex gap-2">
-        <User />
-        Sign in
+
+      <div className="flex gap-3 items-center">
+        <div className="flex gap-2">
+          <Button size={'sm'} variant={'theme'}>
+            <User />
+            Sign in
+          </Button>
+        </div>
+        <Button onClick={toggleTheme} size={'sm'} variant={'theme'}>
+          {theme === 'light' ? <Sun /> : <Moon />}
+        </Button>
+        <Button onClick={() => alert('pressed')} size={'sm'} variant={'theme'}>
+          EN
+        </Button>
       </div>
     </header>
   );
