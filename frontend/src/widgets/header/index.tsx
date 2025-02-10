@@ -3,6 +3,12 @@ import { Search, FormInput as Forms, User, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeContext } from '@/app/context/ThemeContext';
 import { useContext } from 'react';
+import {
+  SignedOut,
+  SignInButton,
+  SignedIn,
+  UserButton,
+} from '@clerk/clerk-react';
 
 const Header = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -29,19 +35,23 @@ const Header = () => {
       </form>
 
       <div className="flex gap-3 items-center">
-        <div className="flex gap-2">
-          <Button size={'sm'} variant={'theme'}>
-            <User />
-            Sign in
-          </Button>
-        </div>
+       
         <Button onClick={toggleTheme} size={'sm'} variant={'theme'}>
           {theme === 'light' ? <Sun /> : <Moon />}
         </Button>
         <Button onClick={() => alert('pressed')} size={'sm'} variant={'theme'}>
           EN
         </Button>
-      </div>
+        <div className="flex gap-2">
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
+      </div> 
+      
     </header>
   );
 };
