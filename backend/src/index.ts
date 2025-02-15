@@ -2,18 +2,32 @@ import express from "express";
 import cors from "cors";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { trpcRouter } from "./trpc";
+import { AppContext, createAppContext } from "./lib/ctx";
 
 const PORT = 8080;
-const app = express();
 
-app.use(cors());
-app.get("/ping", (req, res) => {
-  res.send("pong");
-});
-app.use(
-  "/templates",
-  trpcExpress.createExpressMiddleware({
-    router: trpcRouter,
-  })
-);
-app.listen(PORT, () => console.info(`Listening on http://localhost:${PORT}/`));
+void (async () => {
+  let ctx: AppContext | null = null;
+
+  try {
+    ctx = createAppContext();
+    const app = express();
+
+    app.use(cors());
+    app.get("/ping", (req, res) => {
+      res.send("pong");
+    });
+    app.use(
+      "/templates",
+      trpcExpress.createExpressMiddleware({
+        router: trpcRouter,
+      })
+    );
+    app.listen(PORT, () =>
+      console.info(`Listening on http://localhost:${PORT}/`)
+    );
+  } catch (error) {
+    console.error(error);
+    await ctx?.stop();
+  }
+})();

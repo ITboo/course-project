@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { trpc } from '../../lib/trpc';
-import { getTemplateRoute } from '../../lib/routes';
+import { getBlankFormRoute, getTemplateRoute } from '../../lib/routes';
 import { CirclePlus } from 'lucide-react';
 import Loader from '@/components/ui/loader';
 
@@ -15,9 +15,10 @@ const List = () => {
     return <div className='text-center'>Error: {error.message}</div>;
   }
   console.log(data);
+
   return (
     <div className="flex flex-wrap gap-[10px] justify-center">
-      <Link to="/" className="w-[250px] flex justify-center items-center">
+      <Link to={getBlankFormRoute()} className="w-[250px] flex justify-center items-center">
         <div className="">
           <CirclePlus size={75} />
           <p className='mt-5'>Blank Form</p>

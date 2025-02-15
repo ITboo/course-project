@@ -10,3 +10,4 @@ export const viewTemplateRouteParams = getRouteParams({ title: true });
 export type ViewTemplateRouteParams = typeof viewTemplateRouteParams;
 export const getTemplateRoute = ({ title }: ViewTemplateRouteParams) =>
   `/templates/${title}`;
+export const getBlankFormRoute = () => '/forms/create';
