@@ -4,6 +4,7 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 
 import { AppContext, createAppContext } from "./lib/ctx";
 import { trpcRouter } from "./router";
+import { applyTrpcToExpressApp } from "./lib/trpc";
 
 const PORT = 8080;
 
@@ -18,12 +19,7 @@ void (async () => {
     app.get("/ping", (req, res) => {
       res.send("pong");
     });
-    app.use(
-      "/templates",
-      trpcExpress.createExpressMiddleware({
-        router: trpcRouter,
-      })
-    );
+    applyTrpcToExpressApp(app, ctx, trpcRouter)
     app.listen(PORT, () =>
       console.info(`Listening on http://localhost:${PORT}/`)
     );

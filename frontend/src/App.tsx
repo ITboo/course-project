@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { TrpcProvider } from './app/lib/trpc';
-import { getAllFormsRoute, getBlankFormRoute, getFormRoute, getFormsRoute, viewFormRouteParams } from './app/lib/routes';
+import * as routes from './app/lib/routes';
 
 import { ThemeContext } from './app/context/ThemeContext';
 import MainLayout from './app/layouts/mainLayout';
@@ -12,9 +12,9 @@ import MainPage from './pages/MainPage';
 import BlankForm from './pages/BlankForm';
 import FormBuilder from './pages/BlankForm/FormBuilder';
 import { NewIdeaPage } from './pages/AddTest';
+import Forms from './pages/Forms';
 
 import './App.css';
-import Forms from './pages/Forms';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -28,14 +28,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<MainLayout />}>
-          <Route path={getAllFormsRoute()} element={<MainPage />} />
-          <Route path={getFormsRoute()} element={<Forms />} />
+          <Route path={routes.getAllFormsRoute()} element={<MainPage />} />
+          <Route path={routes.getFormsRoute()} element={<Forms />} />
           <Route path="/test" element={<FormBuilder />} />
           <Route path="/add" element={<NewIdeaPage />} />
-          <Route path={getBlankFormRoute()} element={<BlankForm />} />
-          <Route path={getFormRoute(viewFormRouteParams)} element={<TemplatePage />} />
+          <Route path={routes.getCreateFormRoute()} element={<BlankForm />} />
+          <Route path={routes.getFormRoute(routes.viewFormRouteParams)} element={<TemplatePage />} />
           </Route>          
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path={routes.getNotFoundRoute()} element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </TrpcProvider>

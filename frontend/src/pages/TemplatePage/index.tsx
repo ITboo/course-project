@@ -4,15 +4,17 @@ import { trpc } from '@/app/lib/trpc';
 import Loader from '@/components/ui/loader';
 import { Heart } from 'lucide-react';
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 const TemplatePage = () => {
-  const [formData, setFormData] = useState<Record<string, string | string[]>>({});
+  const [formData, setFormData] = useState<Record<string, string | string[]>>(
+    {}
+  );
   const { title } = useParams() as ViewFormRouteParams;
 
   const { data, error, isLoading, isFetching, isError } = trpc.getForm.useQuery(
     { title: title }
   );
-
 
   const handleInputChange = (fieldId: string, value: string) => {
     setFormData((prev) => ({
@@ -21,7 +23,11 @@ const TemplatePage = () => {
     }));
   };
 
-  const handleCheckboxChange = (fieldId: string, option: string, isChecked: boolean) => {
+  const handleCheckboxChange = (
+    fieldId: string,
+    option: string,
+    isChecked: boolean
+  ) => {
     setFormData((prev) => {
       const currentValues = (prev[fieldId] as string[]) || [];
       const updatedValues = isChecked
@@ -40,10 +46,6 @@ const TemplatePage = () => {
     console.log('Form Data:', formData);
   };
 
-
-
-
-
   if (isLoading || isFetching) {
     return <Loader />;
   }
@@ -55,15 +57,15 @@ const TemplatePage = () => {
     return <div className="text-center">Not Found</div>;
   }
 
-
-
-
-
   return (
-<form onSubmit={handleSubmit} className="w-1/2 container m-auto">
-      <h2 className='text-center'>{data.form.title}</h2>
-      <p className='text-center text-gray-300'>by {data.form.author_id}</p>
-      <div className='flex flex-col items-center'><Heart/> {data.form.likes}</div>
+    <form onSubmit={handleSubmit} className="w-1/2 container m-auto">
+      <h2 className="text-center text-5xl">{data.form.title}</h2>
+      <p className="text-center text-gray-300 text-3xl">
+        by {data.form.author_id}
+      </p>
+      <div className="flex flex-col items-center">
+        <Heart /> {data.form.likes}
+      </div>
       <div className="fields">
         {data.form.fields.map((field) => {
           switch (field.type) {
@@ -75,7 +77,9 @@ const TemplatePage = () => {
                     type="text"
                     placeholder={field.placeholder}
                     value={(formData[field.id] as string) || ''}
-                    onChange={(e) => handleInputChange(field.id, e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange(field.id, e.target.value)
+                    }
                   />
                 </div>
               );
@@ -87,7 +91,9 @@ const TemplatePage = () => {
                   <textarea
                     placeholder={field.placeholder}
                     value={(formData[field.id] as string) || ''}
-                    onChange={(e) => handleInputChange(field.id, e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange(field.id, e.target.value)
+                    }
                   />
                 </div>
               );
@@ -123,9 +129,16 @@ const TemplatePage = () => {
                         id={option}
                         name={field.id}
                         value={option}
-                        checked={(formData[field.id] as string[])?.includes(option) || false}
+                        checked={
+                          (formData[field.id] as string[])?.includes(option) ||
+                          false
+                        }
                         onChange={(e) =>
-                          handleCheckboxChange(field.id, option, e.target.checked)
+                          handleCheckboxChange(
+                            field.id,
+                            option,
+                            e.target.checked
+                          )
                         }
                       />
                       <label htmlFor={option}>{option}</label>
@@ -139,7 +152,11 @@ const TemplatePage = () => {
           }
         })}
       </div>
-      <button type="submit">Submit</button>
+      <div className="flex justify-center">
+        <Button type="submit" variant={'outline'} className="flex text-center">
+          Submit
+        </Button>
+      </div>
     </form>
   );
 };

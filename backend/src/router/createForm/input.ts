@@ -31,6 +31,12 @@ const checkboxFieldSchema = z.object({
   label: z.string(),
   options: z.array(z.string()), // options обязателен для чекбоксов
 });
+const commentSchema = z.object({
+  id: z.string(),
+  author_id: z.string(),
+  text: z.string(),
+  created_at: z.date(), // options обязателен для чекбоксов
+});
 
 // Объединяем схемы для полей
 export const fieldSchema = z.discriminatedUnion('type', [
@@ -46,16 +52,13 @@ export const zCreateFormTRPCInput = z.object({
   title: z.string(),
   description: z.string(),
   author_id: z.string(),
+  created_at: z.date(),
+  status: z.enum(["active","blocked"]),
   img: z.string(),
   likes: z.number(),
+  filled_times: z.number(),
   is_private: z.boolean(),
   theme: z.string(),
-  fields: z.array(fieldSchema)
+  fields: z.array(fieldSchema),
+  comments: z.array(commentSchema)
 });
-
-
-export interface Form {
-  status: "active" | "blocked";
-  comments: [];
-  created_at: Date;
-}

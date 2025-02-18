@@ -10,7 +10,8 @@ export const getFormsRoute = () => '/forms';
 
 export const getFormRoute = ({ title }: ViewFormRouteParams) =>
   `/forms/${title}`;
-export const getBlankFormRoute = () => '/forms/create';
+export const getCreateFormRoute = () => '/forms/create';
+export const getNotFoundRoute = () => '*';
 
 export const viewFormRouteParams = getRouteParams({ title: true });
 export type ViewFormRouteParams = typeof viewFormRouteParams;

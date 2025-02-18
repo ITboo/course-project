@@ -1,6 +1,6 @@
-import { forms } from "../../lib/forms";
-import { trpc } from "../../lib/trpc"
+import { trpc } from "../../lib/trpc";
 
-export const getFormsTRPCRoute = trpc.procedure.query(() => {
+export const getFormsTRPCRoute = trpc.procedure.query(async ({ ctx }) => {
+  const forms = await ctx.prisma.form.findMany();
   return { forms };
-})
+});

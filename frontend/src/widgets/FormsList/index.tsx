@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
 import { trpc } from '../../app/lib/trpc';
-import { getBlankFormRoute, getFormRoute } from '../../app/lib/routes';
-import { CirclePlus } from 'lucide-react';
+import { getFormRoute } from '../../app/lib/routes';
 import Loader from '@/components/ui/loader';
 import Card from '../../components/ui/card';
 
-const List = () => {
+const FormsList = () => {
   const { data, error, isLoading, isFetching, isError } =
     trpc.getForms.useQuery();
   if (isLoading || isFetching) {
@@ -20,9 +19,7 @@ const List = () => {
   return (
     <section className="container m-auto w-1/2">
       <div className="flex gap-3">
-        <Card url={getBlankFormRoute()} title={'Add Form'} className="">
-          <CirclePlus size={75} />
-        </Card>
+        
         <div className="flex gap-5">
           {data.forms.map((form) => (
             <Card
@@ -39,4 +36,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default FormsList;

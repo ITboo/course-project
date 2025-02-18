@@ -1,7 +1,7 @@
 import PopularTemplates from '@/widgets/popularTemplates';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import List from '@/widgets/TemplatesGallery/List';
+import FormsList from '@/widgets/FormsList';
 
 const tags = [
   { id: 1, title: 'Research' },
@@ -21,7 +21,7 @@ const MainPage = () => {
       <p className="text-xl text-gray-600 text-center mb-4">
         Explore fantastic forms from our community or create your own
       </p>
-      <List />      
+      <FormsList />      
       <PopularTemplates />
       
 

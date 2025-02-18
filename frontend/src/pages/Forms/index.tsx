@@ -1,8 +1,8 @@
-import React from 'react'
+import FormsList from "@/widgets/FormsList"
 
 const Forms = () => {
   return (
-    <div>Forms</div>
+    <FormsList/>
   )
 }
 

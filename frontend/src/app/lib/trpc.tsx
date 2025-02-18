@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: 'http://localhost:8080/templates',
+      url: 'http://localhost:8080/forms',
     }),
   ],
 });
