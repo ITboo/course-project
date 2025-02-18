@@ -24,6 +24,23 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      '@typescript-eslint/no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: [
+                '@course_project/backend/**',
+                '!@course_project/backend/**/',
+                '!@course_project/backend/**/input',
+              ],
+              allowTypeImports: true,
+              message:
+                'Only types and input schemas are allowed to be imported from backend workspace',
+            },
+          ],
+        },
+      ],
     },
   },
   prettier

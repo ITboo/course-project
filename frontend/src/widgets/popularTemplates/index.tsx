@@ -9,6 +9,10 @@ import {
 
 const PopularTemplates = () => {
   return (
+    <section>
+      <p className="text-xl text-gray-600 text-center mb-4">
+        Explore best templates
+      </p>
     <Table className='w-1/2 m-auto mb-5'>
       <TableHeader>
         <TableRow>
@@ -51,6 +55,7 @@ const PopularTemplates = () => {
         </TableRow>
       </TableBody>
     </Table>
+    </section>
   );
 };
 

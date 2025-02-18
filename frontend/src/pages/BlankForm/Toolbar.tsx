@@ -3,9 +3,9 @@ import { Eye, RotateCcw } from 'lucide-react';
 const Toolbar = ({
   onAddField,
   onTogglePreview,
-  formName,
+  title,
   onFormNameChange,
-  formDescription,
+  description,
   onFormDescriptionChange,
 }) => {
   return (
@@ -34,7 +34,7 @@ const Toolbar = ({
         <label className='font-bold'>Form Name:</label>
         <input
           type="text"
-          value={formName}
+          value={title}
           onChange={(e) => onFormNameChange(e.target.value)}
           placeholder="Enter form name"
           className="border"
@@ -45,7 +45,7 @@ const Toolbar = ({
       <div className="flex flex-col gap-1 w-[500px]">
         <label className='font-bold'>Form Description:</label>
         <textarea
-          value={formDescription}
+          value={description}
           onChange={(e) => onFormDescriptionChange(e.target.value)}
           placeholder="Enter form description"
           className="border"

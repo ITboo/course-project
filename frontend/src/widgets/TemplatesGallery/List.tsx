@@ -1,39 +1,41 @@
 import { Link } from 'react-router-dom';
-import { trpc } from '../../lib/trpc';
-import { getBlankFormRoute, getTemplateRoute } from '../../lib/routes';
+import { trpc } from '../../app/lib/trpc';
+import { getBlankFormRoute, getFormRoute } from '../../app/lib/routes';
 import { CirclePlus } from 'lucide-react';
 import Loader from '@/components/ui/loader';
+import Card from '../../components/ui/card';
 
 const List = () => {
   const { data, error, isLoading, isFetching, isError } =
-    trpc.getTemplates.useQuery();
+    trpc.getForms.useQuery();
   if (isLoading || isFetching) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (isError) {
-    return <div className='text-center'>Error: {error.message}</div>;
+    return <div className="text-center">Error: {error.message}</div>;
   }
   console.log(data);
 
   return (
-    <div className="flex flex-wrap gap-[10px] justify-center">
-      <Link to={getBlankFormRoute()} className="w-[250px] flex justify-center items-center">
-        <div className="">
+    <section className="container m-auto w-1/2">
+      <div className="flex gap-3">
+        <Card url={getBlankFormRoute()} title={'Add Form'} className="">
           <CirclePlus size={75} />
-          <p className='mt-5'>Blank Form</p>
+        </Card>
+        <div className="flex gap-5">
+          {data.forms.map((form) => (
+            <Card
+              url={getFormRoute({ title: form.title })}
+              title={form.title}
+            />
+          ))}
         </div>
-      </Link>
-      {data.templates.map((template) => (
-        <Link to={getTemplateRoute({ title: template.title })}>
-          <div key={template.id} className="w-[250px]">
-            <img src={template.coverUrl} alt={template.description} />
-            <h2>{template.author}</h2>
-            <p>{template.description}</p>
-          </div>
-        </Link>
-      ))}
-    </div>
+      </div>
+      <div className="flex justify-center">
+        <Link to={'/forms'}>Show all</Link>
+      </div>
+    </section>
   );
 };
 

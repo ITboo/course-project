@@ -1,10 +1,8 @@
-import React from 'react';
-
-const FormPreview = ({ formName, formDescription, fields, onEdit }) => {
+const FormPreview = ({ title, description, fields, onEdit }) => {
   return (
     <div>
-      <h2>{formName}</h2>
-      <p>{formDescription}</p>
+      <h2>{title}</h2>
+      <p>{description}</p>
       <form>
         {fields.map((field, index) => (
           <div key={index} style={{ marginBottom: '20px' }}>
@@ -14,14 +12,14 @@ const FormPreview = ({ formName, formDescription, fields, onEdit }) => {
                 type="text"
                 name={`preview[${index}]`}
                 placeholder="Text input preview"
-                readOnly // Поле только для чтения
+                readOnly
               />
             )}
             {field.type === 'textarea' && (
               <textarea
                 name={`preview[${index}]`}
                 placeholder="Textarea preview"
-                readOnly // Поле только для чтения
+                readOnly
               />
             )}
             {field.type === 'checkbox' &&
@@ -32,7 +30,7 @@ const FormPreview = ({ formName, formDescription, fields, onEdit }) => {
                       type="checkbox"
                       name={`preview[${index}][${optionIndex}]`}
                       value={option}
-                      readOnly // Поле только для чтения
+                      readOnly
                     />
                     {option}
                   </label>
@@ -46,7 +44,7 @@ const FormPreview = ({ formName, formDescription, fields, onEdit }) => {
                       type="radio"
                       name={`preview[${index}]`}
                       value={option}
-                      readOnly // Поле только для чтения
+                      readOnly
                     />
                     {option}
                   </label>
