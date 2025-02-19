@@ -4,13 +4,16 @@ export const Input = ({
   name,
   label,
   formik,
+  placeholder,
   type = 'text',
 }: {
   name: string
   label: string
   formik: FormikProps<any>
   maxWidth?: number | string
-  type?: 'text' | 'password'
+  type?: 'text' | 'password'|'search',
+  placeholder?: string,
+  className?: string
 }) => {
   const value = formik.values[name]
   const error = formik.errors[name] as string | undefined
@@ -35,6 +38,7 @@ export const Input = ({
         name={name}
         id={name}
         disabled={formik.isSubmitting}
+        placeholder={placeholder}
       />
       {invalid && <div>{error}</div>}
     </div>

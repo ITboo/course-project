@@ -2,7 +2,10 @@ import FormsList from "@/widgets/FormsList"
 
 const Forms = () => {
   return (
-    <FormsList/>
+  <div className="container m-auto">
+  <FormsList/>
+  </div>
+    
   )
 }
 

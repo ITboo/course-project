@@ -1,3 +1,4 @@
+import Loader from '@/components/ui/loader';
 import {
   Table,
   TableBody,
@@ -6,10 +7,22 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { trpc } from '../../app/lib/trpc';
+import Section from '@/components/ui/section';
 
 const PopularTemplates = () => {
+  const { data, error, isLoading, isFetching, isError } =
+    trpc.getForms.useQuery();
+  if (isLoading || isFetching) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <div className="text-center">Error: {error.message}</div>;
+  }
+  console.log(data);
   return (
-    <section>
+    <Section>
       <p className="text-xl text-gray-600 text-center mb-4">
         Explore best templates
       </p>
@@ -23,39 +36,17 @@ const PopularTemplates = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
+        {data.forms.map((form)=>(
+          <TableRow>
           <TableCell className="font-medium">1</TableCell>
-          <TableCell>Comprehendo victoria</TableCell>
-          <TableCell>Dana Maggio</TableCell>
-          <TableCell>250</TableCell>
+          <TableCell>{form.title}</TableCell>
+          <TableCell>{form.author_id}</TableCell>
+          <TableCell>{form.likes}</TableCell>
         </TableRow>
-        <TableRow>
-          <TableCell className="font-medium">2</TableCell>
-          <TableCell>Comprehendo victoria</TableCell>
-          <TableCell>Dana Maggio</TableCell>
-          <TableCell>220</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium">3</TableCell>
-          <TableCell>Comprehendo victoria</TableCell>
-          <TableCell>Dana Maggio</TableCell>
-          <TableCell>210</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium">4</TableCell>
-          <TableCell>Comprehendo victoria</TableCell>
-          <TableCell>Dana Maggio</TableCell>
-          <TableCell>200</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium">5</TableCell>
-          <TableCell>Comprehendo victoria</TableCell>
-          <TableCell>Dana Maggio</TableCell>
-          <TableCell>150</TableCell>
-        </TableRow>
+        ))}
       </TableBody>
     </Table>
-    </section>
+    </Section>
   );
 };
 

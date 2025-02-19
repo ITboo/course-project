@@ -1,8 +1,9 @@
 import { Eye, RotateCcw } from 'lucide-react';
 
-const Toolbar = ({
+const xToolbar = ({
   onAddField,
   onTogglePreview,
+  onReset,
   title,
   onFormNameChange,
   description,
@@ -22,7 +23,7 @@ const Toolbar = ({
 
         <button
           type="button"
-          onClick={onTogglePreview}
+          onClick={onReset}
           className="border p-2 flex gap-1"
         >
           <RotateCcw />
@@ -57,7 +58,7 @@ const Toolbar = ({
         <button
           type="button"
           onClick={() =>
-            onAddField({ type: 'text', label: '', options: [], preview: '' })
+            onAddField({ id: Date.now().toString(), type: 'text', label: '', options: [], placeholder: '', preview: '' })
           }
           className="border"
         >
@@ -67,9 +68,11 @@ const Toolbar = ({
           type="button"
           onClick={() =>
             onAddField({
+              id: Date.now().toString(),
               type: 'textarea',
               label: '',
               options: [],
+              placeholder: '',
               preview: '',
             })
           }
@@ -80,7 +83,7 @@ const Toolbar = ({
         <button
           type="button"
           onClick={() =>
-            onAddField({ type: 'checkbox', label: '', options: [''] })
+            onAddField({ id: Date.now().toString(), type: 'checkbox', label: '', placeholder: '', options: [''] })
           }
           className="border"
         >
@@ -89,7 +92,7 @@ const Toolbar = ({
         <button
           type="button"
           onClick={() =>
-            onAddField({ type: 'radio', label: '', options: [''] })
+            onAddField({ id: Date.now().toString(), type: 'radio', label: '', placeholder: '', options: [''] })
           }
           className="border"
         >
@@ -100,4 +103,39 @@ const Toolbar = ({
   );
 };
 
+
+const Toolbar = ({
+  onAddField,
+  onTitleChange,
+  onDescriptionChange,
+  title,
+  description,
+}) => {
+  return (
+    <div className="toolbar">
+      <div>
+        <label>Title:</label>
+        <input
+          type="text"
+          value={title} // Отображаем значение title
+          onChange={(e) => onTitleChange(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Description:</label>
+        <input
+          type="text"
+          value={description} // Отображаем значение description
+          onChange={(e) => onDescriptionChange(e.target.value)}
+        />
+      </div>
+      <div>
+        <button onClick={() => onAddField('text')}>Add Text Field</button>
+        <button onClick={() => onAddField('textarea')}>Add Textarea</button>
+        <button onClick={() => onAddField('radio')}>Add Radio Buttons</button>
+        <button onClick={() => onAddField('checkbox')}>Add Checkboxes</button>
+      </div>
+    </div>
+  );
+};
 export default Toolbar;
