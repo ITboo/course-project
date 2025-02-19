@@ -7,7 +7,7 @@ const SearchForm = () => {
           <input
             type="search"
             placeholder="Search templates..."
-            className="w-full pl-4 pr-10 py-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400"
+            className="w-full bg-transparent pl-4 pr-10 py-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400"
           />
           <button
             type="submit"

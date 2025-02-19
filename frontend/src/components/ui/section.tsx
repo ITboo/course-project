@@ -5,7 +5,7 @@ type SectionProps = {
 };
 
 const Section = ({ children }: SectionProps) => {
-  return <section className="mb-[30px]">{children}</section>;
+  return <section className="mb-[30px] w-[90%] m-auto">{children}</section>;
 };
 
 export default Section;

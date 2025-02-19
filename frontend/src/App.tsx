@@ -9,11 +9,9 @@ import MainLayout from './app/layouts/mainLayout';
 import NotFoundPage from './pages/NotFound';
 import TemplatePage from './pages/TemplatePage';
 import MainPage from './pages/MainPage';
-import BlankForm from './pages/BlankForm';
 import FormBuilder from './pages/BlankForm/FormBuilder';
-import { NewIdeaPage } from './pages/AddTest';
 import Forms from './pages/Forms';
-
+import PrivateRoute from './app/privateRoute';
 import './App.css';
 
 function App() {
@@ -30,9 +28,7 @@ function App() {
           <Route element={<MainLayout />}>
           <Route path={routes.getAllFormsRoute()} element={<MainPage />} />
           <Route path={routes.getFormsRoute()} element={<Forms />} />
-          <Route path="/test" element={<FormBuilder />} />
-          <Route path="/add" element={<NewIdeaPage />} />
-          <Route path={routes.getCreateFormRoute()} element={<BlankForm />} />
+          <Route path={routes.getCreateFormRoute()} element={<PrivateRoute><FormBuilder /></PrivateRoute>} />
           <Route path={routes.getFormRoute(routes.viewFormRouteParams)} element={<TemplatePage />} />
           </Route>          
           <Route path={routes.getNotFoundRoute()} element={<NotFoundPage />} />

@@ -9,8 +9,10 @@ import {
 } from '@/components/ui/table';
 import { trpc } from '../../app/lib/trpc';
 import Section from '@/components/ui/section';
+import { useTranslation } from 'react-i18next';
 
 const PopularTemplates = () => {
+  const { t } = useTranslation();
   const { data, error, isLoading, isFetching, isError } =
     trpc.getForms.useQuery();
   if (isLoading || isFetching) {
@@ -24,7 +26,8 @@ const PopularTemplates = () => {
   return (
     <Section>
       <p className="text-xl text-gray-600 text-center mb-4">
-        Explore best templates
+        {t('best')}
+        
       </p>
     <Table className='w-1/2 m-auto mb-5'>
       <TableHeader>
