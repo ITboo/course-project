@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import Section from "@/components/ui/section";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const tags = [
     { id: 1, title: 'Research' },
@@ -13,6 +13,10 @@ const tags = [
   ];
 const SearchByTag = () => {
   const {t} = useTranslation()
+  const navigate = useNavigate();
+  const handleTagClick = (theme: string) => {
+    navigate(`/forms?theme=${encodeURIComponent(theme)}`);
+  };
   return (
     <Section>
     <p className="text-xl text-gray-600 text-center mb-4">
@@ -21,9 +25,9 @@ const SearchByTag = () => {
     </p>
     <div className="flex gap-2 justify-center">
       {tags.map((tag) => (
-        <Link to="/" key={tag.id}>
+        <button onClick={() => handleTagClick(tag.title.toLocaleLowerCase())}>
           <Badge variant="outline">{tag.title}</Badge>
-        </Link>
+        </button >
       ))}
     </div>
     </Section>

@@ -23,7 +23,7 @@ console.log(data);
           {data.forms.map((form) => (
             <Card
             key={form.id}
-              url={getFormRoute({ title: form.title })}
+              url={getFormRoute({ id: form.id })}
               title={form.title}
               author={form.author_id}
             />

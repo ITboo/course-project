@@ -10,10 +10,10 @@ const TemplatePage = () => {
   const [formData, setFormData] = useState<Record<string, string | string[]>>(
     {}
   );
-  const { title } = useParams() as ViewFormRouteParams;
+  const { id } = useParams() as ViewFormRouteParams;
 
   const { data, error, isLoading, isFetching, isError } = trpc.getForm.useQuery(
-    { title: title }
+    { id: id }
   );
 
   const handleInputChange = (fieldId: string, value: string) => {

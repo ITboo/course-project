@@ -1,7 +1,8 @@
 import { z } from "zod";
 import { trpc } from "../../lib/trpc";
+import { forms } from "../../lib/forms";
 
-export const getFormTRPCRoute = trpc.procedure
+/*export const getFormTRPCRoute = trpc.procedure
   .input(
     z.object({
       id: z.string(),
@@ -15,4 +16,12 @@ export const getFormTRPCRoute = trpc.procedure
     });
     if (!form) throw new Error(`${input.id} not found`);
     return { form };
-  });
+  });*/
+
+  export const getFormTRPCRoute = trpc.procedure.input(z.object({
+    id: z.string()
+  })).query(({input})=>{
+    const form = forms.find((form)=>form.id===input.id)
+    if(!form) throw new Error(`${input.id} not found`)
+    return {form}
+  })
