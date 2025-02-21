@@ -17,7 +17,7 @@ const Header = () => {
 
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
-    <header className="container m-auto flex p-4 items-center justify-between mb-[30px]">
+    <header className="container m-auto flex p-4 items-center justify-between">
       <Logo />
       <SearchForm />
       <CreateFormButton />

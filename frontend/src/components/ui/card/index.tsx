@@ -11,12 +11,12 @@ interface FormCardProps {
 
 const FormCard = ({ url, img, title, children, author}: FormCardProps) => {
   return (
-    <Link to={url} className='border p-5 w-[200px]'>
-      <article>
+    <Link to={url} className='max-w-sm rounded-lg overflow-hidden shadow-lg bg-white'>
+      <article className='p-5'>
         {children}
-        <img src={img?img:'https://i.pinimg.com/736x/27/be/86/27be8619450fe746f9369e2b29684675.jpg'} alt={title}  width={100}/>
-        <h3>{title}</h3>
-        <h4>by {author}</h4>
+        <img src={img?img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvb1DVco9CXgTE6wIMvKT9G-cEegoaNP4g1QU9HwO7hfBiKhabKfGxHYNm5LdKMiTxloM&usqp=CAU'} alt={title}  className="w-full h-48 object-cover"/>
+        <h3 className='font-bold text-xl mb-2'>{title}</h3>
+        <h4 className='text-gray-700 text-base'>by {author}</h4>
       </article>
     </Link>
   );

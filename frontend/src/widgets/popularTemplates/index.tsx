@@ -10,8 +10,10 @@ import {
 import { trpc } from '../../app/lib/trpc';
 import Section from '@/components/ui/section';
 import { useTranslation } from 'react-i18next';
+import {format} from 'date-fns/format'
 
 const PopularTemplates = () => {
+  const date = Date.now()
   const { t } = useTranslation();
   const { data, error, isLoading, isFetching, isError } =
     trpc.getForms.useQuery();
@@ -36,6 +38,7 @@ const PopularTemplates = () => {
           <TableHead>Title</TableHead>
           <TableHead>Author</TableHead>
           <TableHead>Filled forms</TableHead>
+          <TableHead>Created at</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -45,6 +48,7 @@ const PopularTemplates = () => {
           <TableCell>{form.title}</TableCell>
           <TableCell>{form.author_id}</TableCell>
           <TableCell>{form.likes}</TableCell>
+          <TableCell>{format(date,'yyyy-MM-dd')}</TableCell>
         </TableRow>
         ))}
       </TableBody>

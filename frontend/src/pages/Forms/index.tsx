@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { trpc } from '../../app/lib/trpc';
 import Loader from '@/components/ui/loader';
-import FormsList from '@/widgets/FormsList';
 
 type FormItem = {
   id: string;
