@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { trpc } from '../../app/lib/trpc';
 import Loader from '@/components/ui/loader';
+import { getFormRoute } from '@/app/lib/routes';
+import Card from '@/components/ui/card';
 
 type FormItem = {
   id: string;
@@ -52,16 +54,16 @@ const Forms = () => {
         {searchQuery && (
           <p className="mb-4">Результаты поиска для: "{searchQuery}"</p>
         )}
-        <ul>
-          {filteredData.map((item) => (
-            <li
-              key={item.id}
-              className="bg-white p-4 mb-2 shadow-md rounded-md"
-            >
-              <h2 className="text-xl font-semibold">{item.title}</h2>
-            </li>
+        <div className='flex gap-5 flex-wrap justify-center'>
+          {filteredData.map((form) => (
+            <Card
+            key={form.id}
+            url={getFormRoute({ id: form.id })}
+            title={form.title}
+            author={form.author_id}
+          />
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
+import { forms } from "../../lib/forms";
 import { trpc } from "../../lib/trpc";
 import { zCreateFormTRPCInput } from "./input";
 
-export const getCreateFormTRPCRoute = trpc.procedure
+/*export const getCreateFormTRPCRoute = trpc.procedure
   .input(zCreateFormTRPCInput)
   .mutation(async ({ ctx, input }) => {
     const exForm = await ctx.prisma.form.findUnique({
@@ -42,4 +43,11 @@ export const getCreateFormTRPCRoute = trpc.procedure
         },
       },
     });
+  });*/
+
+  export const getCreateFormTRPCRoute = trpc.procedure
+  .input(zCreateFormTRPCInput)
+  .mutation(({ input }) => {
+    forms.unshift(input);
+    return { success: true, form: input };
   });

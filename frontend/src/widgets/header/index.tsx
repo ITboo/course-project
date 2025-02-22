@@ -12,12 +12,11 @@ import ThemeSwitcher from '@/components/ui/themeSwitcher';
 import LangSwitcher from '@/components/ui/langSwitcher';
 import CreateFormButton from '@/components/ui/createFormButton';
 
-
 const Header = () => {
 
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
-    <header className="container m-auto flex p-4 items-center justify-between">
+    <header className="container m-auto flex p-4 items-center justify-between mb-[30px]">
       <Logo />
       <SearchForm />
       <CreateFormButton />

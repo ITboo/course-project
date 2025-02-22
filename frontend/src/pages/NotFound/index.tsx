@@ -12,7 +12,7 @@ const NotFoundPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-50 text-gray-800 text-center">
       <Helmet>
-        <title>Not Found - FormCraft</title>
+        <title>404 - FormCraft</title>
       </Helmet>
       <h1 className="text-5xl font-bold mb-4">404 - Page Not Found</h1>
       <p className="text-xl mb-8">

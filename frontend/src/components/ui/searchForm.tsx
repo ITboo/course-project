@@ -1,31 +1,31 @@
-import { Search } from 'lucide-react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Button } from './button';
+import { Icon } from './icon';
 
 const SearchForm = () => {
   const [query, setQuery] = useState('');
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault(); // Предотвращаем перезагрузку страницы
-    navigate(`/forms?q=${encodeURIComponent(query)}`); // Перенаправляем на /forms с параметром q
+    e.preventDefault();
+    navigate(`/forms?q=${encodeURIComponent(query)}`);
   };
 
   return (
     <form onSubmit={handleSearch} className="flex items-center">
       <input
         type="search"
-        placeholder="Поиск..."
+        placeholder={t("search")}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="p-2 border border-gray-300 rounded-l-md focus:outline-none"
+        className="bg-transparent p-2 border border-gray-300 rounded-2xl focus:outline-none"
       />
-      <button
-        type="submit"
-        className="p-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600"
-      >
-        <Search/>
-      </button>
+      <Button type="submit" className="p-2 hover:text-blue-500">
+        <Icon name={'search'} size={30} />
+      </Button>
     </form>
   );
 };

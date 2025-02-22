@@ -1,21 +1,22 @@
-import PopularTemplates from '@/widgets/popularTemplates';
 import { Link } from 'react-router-dom';
-import FormsList from '@/widgets/FormsList';
-import Section from '@/components/ui/section';
-import SearchByTag from '@/widgets/searchByTag';
-import { Button } from '@/components/ui/button';
 import { useTranslation } from "react-i18next";
-const MainPage = () => {
+import PopularTemplates from '@/widgets/popularTemplates';
+import FormsList from '@/widgets/FormsList';
+import SearchByTag from '@/widgets/searchByTag';
+import Section from '@/components/ui/section';
+import { Button } from '@/components/ui/button';
+
+const MainPage: React.FC  = ()=> {
   const { t } = useTranslation();
+
   return (
     <div className="container m-auto">
       <Section>
       <h1 className="text-4xl font-bold mb-4 text-center">
-        {t('title')}
+        {t('main_title')}
       </h1>
       <p className="text-xl text-gray-600 text-center mb-4">
-        {t('description')}
-        
+        {t('main_description')}        
       </p>
       </Section>
           <FormsList/>
@@ -24,8 +25,7 @@ const MainPage = () => {
             <Button variant={'outline'}>{t('show_all')}</Button>
             </Link>
         </div>
-
-      <PopularTemplates />
+      <PopularTemplates/>
       <SearchByTag />
     </div>
   );
