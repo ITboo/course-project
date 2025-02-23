@@ -31,6 +31,7 @@
       "@course-project/backend/*": ["../../apps/backend/src/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*"], 
+  "exclude": ["../../apps/backend/**/*"] , // Исключаем бэкенд
   "references": [{ "path": "../../packages/shared" }] // Ссылка на shared
 }
