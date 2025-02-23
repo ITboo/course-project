@@ -7,7 +7,6 @@ services:
       npm run build --workspace=@project/shared
       npm run build --workspace=@project/frontend
     startCommand: npm start --workspace=@project/frontend
-    sourcePath: apps/frontend
 
   - type: web
     name: backend
@@ -17,4 +16,3 @@ services:
       npm run build --workspace=@project/shared
       npm run build --workspace=@project/backend
     startCommand: npm start --workspace=@project/backend
-    sourcePath: apps/backend
