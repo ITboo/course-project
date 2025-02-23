@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".", // Базовая директория для путей (относительно tsconfig.json)
+      "paths": {
+        "@course-project/backend/*": ["../../apps/backend/src/*"], // Путь к бэкенду
+        "@course-project/shared/*": ["./src/*"] // Путь к текущему пакету
+      },
+      "outDir": "./dist", // Папка для скомпилированных файлов
+      "rootDir": "./src", // Корневая папка с исходным кодом
+      "strict": true, // Включаем строгую проверку типов
+      "module": "commonjs", // Формат модуля
+      "target": "es6", // Целевая версия JavaScript
+      "esModuleInterop": true // Для совместимости с ES-модулями
+    },
+    "include": ["src/**/*"] // Включаем все файлы в src
+  }
