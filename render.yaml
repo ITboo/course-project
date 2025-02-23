@@ -1,20 +1,20 @@
 services:
   - type: web
     name: frontend
-    runtime: node
+    plan: starter
     buildCommand: |
       npm install
-      npm run build --workspace=@course-project/shared
-      npm run build --workspace=@course-project/frontend
-    startCommand: npm start --workspace=@course-project/frontend
-    rootDirectory: apps/frontend
+      npm run build --workspace=@project/shared
+      npm run build --workspace=@project/frontend
+    startCommand: npm start --workspace=@project/frontend
+    sourcePath: apps/frontend
 
   - type: web
     name: backend
-    runtime: node
+    plan: starter
     buildCommand: |
       npm install
-      npm run build --workspace=@course-project/shared
-      npm run build --workspace=@course-project/backend
-    startCommand: npm start --workspace=@course-project/backend
-    rootDirectory: apps/backend
+      npm run build --workspace=@project/shared
+      npm run build --workspace=@project/backend
+    startCommand: npm start --workspace=@project/backend
+    sourcePath: apps/backend
