@@ -32,7 +32,7 @@ const checkboxFieldSchema = z.object({
   options: z.array(z.string()).min(1),
 });
 
-const commentSchema = z.object({
+export const commentSchema = z.object({
   id: z.string(),
   author_id: z.string(),
   text: z.string(),

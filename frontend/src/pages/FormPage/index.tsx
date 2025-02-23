@@ -7,11 +7,19 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useAuth, useUser } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
-
-import CreateForm from '../CreateForm';
 import Comments from '@/widgets/Comments';
+import CommentForm from '@/widgets/AddComment';
+import { useQueryClient } from '@tanstack/react-query';
 
 const FormPage = () => {
+  const [commentText, setCommentText] = useState('');
+  const [comments, setComments] = useState([]);
+  const queryClient = useQueryClient();
+  const addComment = trpc.createComment.useMutation({
+    onSuccess: () => {
+      queryClient.invalidateQueries(['getForm', id]);
+    },
+  });
   const [formData, setFormData] = useState<Record<string, string | string[]>>(
     {}
   );
@@ -85,6 +93,25 @@ const FormPage = () => {
   if (!data.form) {
     return <div className="text-center">Not Found</div>;
   }
+
+  const handleAddComment = async(text: string) => {
+    if (text.trim()) {
+      try {
+        const newComment = await addComment.mutateAsync({
+          id: crypto.randomUUID(),
+          created_at:new Date().toISOString(),
+          formId: id,
+          author_id: user?.id||'',
+          text: text,
+        });
+        setComments((prev) => [...prev, newComment]);
+        setCommentText('');
+        alert('Комментарий успешно добавлен!');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <>
@@ -261,6 +288,7 @@ const FormPage = () => {
           </form>
         </>
       )}
+      <CommentForm onSubmit={handleAddComment} />
       <Comments comments={data.form.comments} />
     </>
   );

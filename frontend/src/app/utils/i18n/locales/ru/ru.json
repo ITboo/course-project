@@ -20,5 +20,7 @@
   "table_title": "Название",
   "table_author": "Автор",
   "table_filled": "Заполнено раз",
-  "table_created": "Создано"
+  "table_created": "Создано",
+  "send": "Отправить",
+  "user_comment":"Напишите ваш комментарий..."
 }

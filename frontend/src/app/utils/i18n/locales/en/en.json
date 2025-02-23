@@ -20,5 +20,7 @@
   "table_title": "Title",
   "table_author": "Author",
   "table_filled": "Filled times",
-  "table_created": "Created at"
+  "table_created": "Created at",
+  "send": "Send",
+  "user_comment":"Your comment..."
 }
