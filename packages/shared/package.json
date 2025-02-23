@@ -1,0 +1,16 @@
+{
+    "name": "@course-project/shared",
+    "version": "1.0.0",
+    "private": true,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+      "build": "tsc -p .",
+      "dev": "tsc -w -p .",
+      "clean": "rimraf dist"
+    },
+    "devDependencies": {
+      "typescript": "^5.0.0",
+      "rimraf": "^5.0.0"
+    }
+  }
