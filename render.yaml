@@ -5,9 +5,9 @@ services:
     runtime: node
     buildCommand: |
       npm install
-      npm run build --workspace=@project/shared
-      npm run build --workspace=@project/frontend
-    startCommand: npm start --workspace=@project/frontend
+      npm run build --workspace=@course-project/shared
+      npm run build --workspace=@course-project/frontend
+    startCommand: npm start --workspace=@course-project/frontend
 
   - type: web
     name: backend
@@ -15,6 +15,6 @@ services:
     runtime: node
     buildCommand: |
       npm install
-      npm run build --workspace=@project/shared
-      npm run build --workspace=@project/backend
-    startCommand: npm start --workspace=@project/backend
+      npm run build --workspace=@course-project/shared
+      npm run build --workspace=@course-project/backend
+    startCommand: npm start --workspace=@course-project/backend
