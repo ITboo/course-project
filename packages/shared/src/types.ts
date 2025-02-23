@@ -1,2 +1,2 @@
 import { TrpcRouter } from "@course-project/backend/src/router";
-export { TrpcRouter };
+export type { TrpcRouter };

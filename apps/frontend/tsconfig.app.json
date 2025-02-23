@@ -21,11 +21,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+    "noImplicitAny": false,
 
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@course-project/shared/*": ["../../packages/shared/src/*"] 
+      "@course-project/shared/*": ["../../packages/shared/src/*"]
     }
   },
   "include": ["src"]
