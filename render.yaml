@@ -2,6 +2,7 @@ services:
   - type: web
     name: frontend
     plan: starter
+    runtime: node
     buildCommand: |
       npm install
       npm run build --workspace=@project/shared
@@ -11,6 +12,7 @@ services:
   - type: web
     name: backend
     plan: starter
+    runtime: node
     buildCommand: |
       npm install
       npm run build --workspace=@project/shared
