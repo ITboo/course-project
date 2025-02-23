@@ -1,0 +1,79 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url = env("DATABASE_URL")
+}
+
+model User {
+  id         String    @id @default(dbgenerated()) @map("id")
+  username   String    @unique
+  created_at DateTime  @default(now())
+  role       UserRole  @default(user)
+  forms      Form[]
+  comments   Comment[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  admin
+  user
+}
+
+model Form {
+  id           String    @id @default(uuid())
+  title        String    
+  description  String
+  author_id    String
+  author       User      @relation(fields: [author_id], references: [id])
+  created_at   DateTime  @default(now())
+  status       FormStatus @default(active)
+  img          String
+  likes        Int       @default(0)
+  filled_times Int       @default(0)
+  is_private   Boolean   @default(false)
+  theme        String
+  fields       Field[]
+  comments     Comment[]
+
+  @@map("forms")
+}
+
+enum FormStatus {
+  active
+  blocked
+}
+
+model Field {
+  id          String  @id @default(uuid())
+  type        FieldType
+  label       String
+  placeholder String?
+  options     String[]
+  formId      String
+  form        Form    @relation(fields: [formId], references: [id])
+
+  @@map("fields")
+}
+
+enum FieldType {
+  text
+  textarea
+  radio
+  checkbox
+}
+
+model Comment {
+  id         String   @id @default(uuid())
+  author_id  String
+  author     User     @relation(fields: [author_id], references: [id])
+  text       String
+  created_at DateTime @default(now())
+  formId     String
+  form       Form     @relation(fields: [formId], references: [id])
+
+  @@map("comments")
+}
