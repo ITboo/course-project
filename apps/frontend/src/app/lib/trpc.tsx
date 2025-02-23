@@ -1,9 +1,9 @@
 import { createTRPCReact } from '@trpc/react-query';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
-import type { TrpcRouter } from '@course-project/shared/types';
+import type { TrpcRouter } from '@course-project/shared/index';
 
-export const trpc = createTRPCReact<TrpcRouter>();
+export const trpc: ReturnType<typeof createTRPCReact<TrpcRouter>> = createTRPCReact<TrpcRouter>();
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: 'http://localhost:8080/forms',
+      url: 'https://course-project-4k4i.onrender.com/forms',
     }),
   ],
 });

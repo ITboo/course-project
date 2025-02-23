@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+      "target": "es6", // Целевая версия JavaScript
+      "module": "commonjs", // Формат модуля (commonjs, esnext и т.д.)
+      "strict": true, // Включает строгую проверку типов
+      "esModuleInterop": true, // Для совместимости с ES-модулями
+      "skipLibCheck": true, // Пропускать проверку типов в node_modules
+      "forceConsistentCasingInFileNames": true, // Проверка регистра имён файлов
+      "composite": true, // Включает поддержку composite projects
+      "incremental": true, // Включает инкрементальную сборку
+      "declaration": true, // Генерирует файлы .d.ts
+      "declarationMap": true, // Генерирует source maps для .d.ts
+      "sourceMap": true, // Генерирует source maps
+      "rootDir": ".", // Корневая директория для исходных файлов
+      "outDir": "./dist", // Папка для скомпилированных файлов
+      "baseUrl": ".", // Базовая директория для путей
+      "paths": {
+        "@course-project/backend/*": ["apps/backend/src/*"], // Путь к бэкенду
+        "@course-project/frontend/*": ["apps/frontend/src/*"], // Путь к фронтенду
+        "@course-project/shared/*": ["packages/shared/src/*"] // Путь к shared
+      }
+    },
+    "include": ["apps/**/*", "packages/**/*"], // Включает все файлы в apps и packages
+    "exclude": ["node_modules", "dist"], // Исключает node_modules и dist
+    "references": [
+      { "path": "apps/backend" }, // Ссылка на бэкенд
+      { "path": "apps/frontend" }, // Ссылка на фронтенд
+      { "path": "packages/shared" } // Ссылка на shared
+    ]
+  }
