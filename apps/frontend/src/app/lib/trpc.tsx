@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: 'https://course-project-4k4i.onrender.com/forms',
+      url: 'http://localhost:8080/forms',
     }),
   ],
 });
