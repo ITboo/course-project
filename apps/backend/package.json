@@ -19,8 +19,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@course-project/shared": "1.0.0",
-    "@prisma/client": "^6.3.1",
     "@trpc/server": "^10.45.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
