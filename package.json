@@ -3,17 +3,14 @@
   "version": "1.0.0",
   "packageManager": "npm@10.5.0",
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "start": "turbo start"
+    "build-back": "cd apps/backend && npm run build",
+    "build-front": "cd apps/frontend && npm run build",
+    "build": "concurrently 'build-back' 'build-front'"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "eslint": "^8.47.0"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "dependencies": {
     "cross-env": "^7.0.3"
   }
