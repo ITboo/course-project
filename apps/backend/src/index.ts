@@ -4,6 +4,8 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 
 import { trpcRouter } from "./router";
 import { applyTrpcToExpressApp } from "./lib/trpc";
+import { logger } from "./lib/logger";
+import { applyServeWebApp } from "./lib/serveWebApp";
 
 const PORT = 8080;
 
@@ -15,11 +17,12 @@ void (async () => {
     app.get("/ping", (req, res) => {
       res.send("pong");
     });
-    applyTrpcToExpressApp(app, trpcRouter)
+    await applyTrpcToExpressApp(app, trpcRouter)
+    await applyServeWebApp(app)
     app.listen(PORT, () =>
-      console.info(`Listening on http://localhost:${PORT}/`)
+      logger.info(`Listening on http://localhost:${PORT}/`)
     );
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 })();
