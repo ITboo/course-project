@@ -13,7 +13,7 @@ const checkFileExists = async (filePath: string) => {
 }
 
 const findWebappDistDir = async (dir: string): Promise<string | null> => {
-  const maybeWebappDistDir = path.resolve(dir, 'frontend/dist')
+  const maybeWebappDistDir = path.resolve(dir, 'apps/frontend/dist')
   if (await checkFileExists(maybeWebappDistDir)) {
     return maybeWebappDistDir
   }
