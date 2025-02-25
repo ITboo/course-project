@@ -25,6 +25,7 @@ const findWebappDistDir = async (dir: string): Promise<string | null> => {
 
 export const applyServeWebApp = async (app: Express) => {
   const frontendDistDir = await findWebappDistDir(__dirname)
+  logger.info(frontendDistDir)
   if (!frontendDistDir) {
     if (env.NODE_ENV === 'production') {
       throw new Error('Frontend dist dir not found')
@@ -37,6 +38,7 @@ export const applyServeWebApp = async (app: Express) => {
   const htmlSource = await fs.readFile(path.resolve(frontendDistDir, 'index.html'), 'utf8')
   app.use(express.static(frontendDistDir, { index: false }))
   app.get('/*', (req, res) => {
+    logger.info(htmlSource)
     res.send(htmlSource)
   })
 }
